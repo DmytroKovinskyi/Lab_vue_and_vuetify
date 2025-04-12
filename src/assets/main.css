@@ -24,12 +24,13 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+    display: block;
+    margin: 0;
+    padding: 0;
   }
 
   #app {
     display: block;
-    padding: 0 2rem;
+    padding: 0 0rem
   }
 }

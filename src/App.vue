@@ -29,6 +29,7 @@ import { ref } from 'vue'
 const drawer = ref(null)
 const items = ref([
   { title: 'List', to: '/', icon: 'mdi-format-list-checks' },
+  { title: 'Group', to: '/group', icon: 'mdi-account-group' },
   { title: 'About', to: '/about', icon: 'mdi-help-box' },
 ])
 const right = ref(false)

@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+
+.student-table thead th {
+  font-weight: bold;
+}
+
 a,
 .green {
   text-decoration: none;

@@ -1,61 +1,40 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+  <v-app>
+    <v-app-bar app fixed>
+      <v-app-bar-nav-icon @click="drawer = !drawer">
+        <v-icon>mdi-menu</v-icon>
+      </v-app-bar-nav-icon>
+      <v-app-bar-title>My Project</v-app-bar-title>
+    </v-app-bar>
 
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src=".assets/logo.svg" width="125" height="125" />
+    <v-navigation-drawer v-model="drawer" app>
+      <v-list>
+        <v-list-item v-for="item in items" :key="item.title" link :to="item.to" :title="item.title">
+          <template v-slot:prepend>
+            <v-icon>{{ item.icon }}</v-icon>
+          </template>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script setup>
+import { ref } from 'vue'
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const drawer = ref(null)
+const items = ref([
+  { title: 'List', to: '/', icon: 'mdi-format-list-checks' },
+  { title: 'About', to: '/about', icon: 'mdi-help-box' },
+])
+const right = ref(false)
+</script>
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
+<style>
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -77,7 +56,6 @@ nav a:first-of-type {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
